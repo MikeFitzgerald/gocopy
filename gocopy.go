@@ -83,8 +83,6 @@ func main() {
 
     dest_dir := flag.Arg(1)
 
-    fmt.Println("Source: " + source_dir)
-
     // Check if the source directory exists
     src, err := os.Stat(source_dir)
     if err != nil {
@@ -97,19 +95,15 @@ func main() {
     }
 
     // Create the destination directory
-    fmt.Println("Destination:" + dest_dir)
-
+    
     _, err = os.Open(dest_dir)
     if !os.IsNotExist(err) {
-        fmt.Println("Desintation directory already exists. Abort!")
         os.Exit(1)
     }
 
     err = CopyDir(source_dir, dest_dir)
     if err != nil {
         fmt.Println(err)
-    } else {
-        fmt.Println("Directory copied")
     }
 
 }
